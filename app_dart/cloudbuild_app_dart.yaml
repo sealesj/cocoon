@@ -9,6 +9,7 @@ steps:
   - name: us-docker.pkg.dev/$PROJECT_ID/flutter/flutter
     entrypoint: '/bin/bash'
     args: ['cloud_build/dashboard_build.sh']
+    images: ['us-docker.pkg.dev/$PROJECT_ID/flutter/flutter']
 
   # Deploy a new version to google cloud.
   - name: gcr.io/cloud-builders/gcloud
@@ -23,5 +24,6 @@ steps:
         else
           bash cloud_build/deploy_app_dart.sh $PROJECT_ID $SHORT_SHA $_GAE_PROMOTE
         fi
+    images: ['us-docker.pkg.dev/$PROJECT_ID/flutter/flutter']
 
 timeout: 1200s
